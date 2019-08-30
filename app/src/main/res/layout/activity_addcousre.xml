@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/addCourseBackground"
+    tools:context=".activities.AddCourseActvity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addCourse_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <Button
+            android:id="@+id/addCourseToolbar_commit_menu"
+            android:layout_width="65px"
+            android:layout_height="65px"
+            android:layout_marginRight="50px"
+            android:clickable="true"
+            android:background="@drawable/save"
+            android:layout_gravity="right"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/addCourse_Rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

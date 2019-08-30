@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B2F383</color>
+    <color name="colorPrimaryDark">#6EBBFF</color>
+    <color name="colorAccent">#80DDBD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="numCard">#ACD8FD</color>
+    <color name="numText">#6E6F73</color>
+    <color name="gray">#00A29E9E</color>
+    <color name="addCourseBackground">#F0EFF5</color>
+    <color name="buttonCenterColor">#348DE8</color>
+    <color name="buttonSideColor">#82C5FC</color>
+    <color name="blue">#8BCDFD</color>
+    <color name="addTermEditBackground">#d3e1f8</color>
+</resources>

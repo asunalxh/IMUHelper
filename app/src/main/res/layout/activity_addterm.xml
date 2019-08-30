@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/addCourseBackground"
+    tools:context=".activities.AddTermActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="添加学期">
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="377px">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_marginTop="66px"
+
+                android:layout_marginLeft="71px"
+                android:src="@drawable/coursedate"/>
+
+            <TextView
+                android:layout_marginTop="106px"
+                android:layout_marginLeft="54px"
+                android:text="学期名称"
+                android:textSize="45px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/addTerm_name_edit"
+            android:layout_width="600px"
+            android:layout_height="80px"
+            android:layout_marginLeft="150px"
+            android:layout_marginTop="45px"
+            android:paddingLeft="12px"
+            style="@style/addCourseStyle"
+            android:background="@drawable/editstyle" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25px"
+        android:layout_height="377px">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_marginTop="66px"
+
+                android:layout_marginLeft="71px"
+                android:src="@drawable/termdate"/>
+
+            <TextView
+                android:layout_marginTop="106px"
+                android:layout_marginLeft="54px"
+                android:text="学期开始时间"
+                android:textSize="45px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addTerm_time"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="80px"
+            android:layout_marginLeft="150px"
+            android:layout_marginTop="45px">
+
+
+            <TextView
+                android:id="@+id/addTerm_year_Tv"
+                android:layout_width="180px"
+                style="@style/addTermStyle"
+                android:background="@drawable/editstyle"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                style="@style/addTermStyle"
+                android:text="年"/>
+            <TextView
+                android:id="@+id/addTerm_month_Tv"
+                android:layout_width="120px"
+                android:background="@drawable/editstyle"
+                android:layout_height="match_parent"
+                style="@style/addTermStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                style="@style/addTermStyle"
+                android:text="月"/>
+            <TextView
+                android:id="@+id/addTerm_day_Tv"
+                android:layout_width="120px"
+                android:background="@drawable/editstyle"
+                android:layout_height="match_parent"
+                style="@style/addTermStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                style="@style/addTermStyle"
+                android:text="日"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="45px"
+            android:text="确 认 添 加"
+            android:id="@+id/addTerm_btn"
+            android:background="@drawable/buttonstyle"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="600px"
+            android:textColor="@color/white"
+            android:layout_height="120px" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

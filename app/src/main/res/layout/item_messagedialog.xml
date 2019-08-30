@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:padding="36px"
+        android:id="@+id/messageDialog_content_Tv"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/message_dialog_context"
+        android:alpha="0.9"
+        style="@style/messageDialogTextStyle"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/messageDialog_left_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:alpha="0.9"
+            android:gravity="center"
+            style="@style/messageDialogTextStyle"
+            android:background="@drawable/left_botton_shape"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/messageDialog_right_btn"
+            android:layout_width="0dp"
+            style="@style/messageDialogTextStyle"
+            android:textColor="#F25858"
+            android:background="@drawable/right_button_shape"
+            android:alpha="0.9"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>

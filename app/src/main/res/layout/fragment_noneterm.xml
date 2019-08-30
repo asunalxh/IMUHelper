@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/noneTerm_btn"
+        android:text="添加课程表"
+        android:layout_width="600px"
+        android:layout_height="120px"
+        android:background="@drawable/buttonstyle"
+        android:layout_gravity="center"/>
+
+</FrameLayout>

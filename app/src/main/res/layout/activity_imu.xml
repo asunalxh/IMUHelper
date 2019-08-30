@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.IMU">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/imu_background_Iv"
+        android:background="@drawable/imu_background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="404px"
+            android:layout_height="192px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="250px"
+            android:src="@drawable/me" />
+
+
+        <LinearLayout
+            android:layout_width="700px"
+            android:layout_height="450px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150px"
+            android:divider="@drawable/underline"
+            android:orientation="vertical"
+            android:showDividers="middle|end">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="50px"
+                    android:src="@drawable/account" />
+
+                <EditText
+                    android:id="@+id/imu_username_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入账号"
+                    android:gravity="bottom"
+                    android:textColor="@color/white"
+                    android:textColorHint="#BCE0FE"
+                    android:layout_marginLeft="48px"
+                    android:background="@null" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="50px"
+                    android:src="@drawable/password" />
+
+                <EditText
+                    android:id="@+id/imu_password_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入密码"
+                    android:gravity="bottom"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="#BCE0FE"
+                    android:layout_marginLeft="48px"
+                    android:background="@null" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:divider="@drawable/underline"
+                    android:showDividers="end|middle">
+
+
+                        <ImageView
+                            android:layout_width="80px"
+                            android:layout_height="80px"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="50px"
+                            android:src="@drawable/code" />
+
+                        <EditText
+                            android:id="@+id/imu_code_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="验证码"
+                            android:gravity="bottom"
+                            android:textColor="@color/white"
+                            android:textColorHint="#BCE0FE"
+                            android:layout_marginLeft="48px"
+                            android:background="@null" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imu_Iv"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+
+                    android:layout_height="80px" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/imu_logIn_btn"
+            android:layout_width="520px"
+            android:layout_height="100px"
+            android:layout_marginTop="100px"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/imu_button_text"
+            android:background="@drawable/imu_button_background"
+            android:text="登录" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imu_background_Iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/background_login" />
+
+
+</RelativeLayout>

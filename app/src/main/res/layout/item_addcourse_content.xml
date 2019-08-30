@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="25px">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="71px"
+        android:layout_height="205px">
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/coursedate"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/addCourseStyle"
+                android:layout_toLeftOf="@id/addCourse_Btn"
+                android:id="@+id/addCourse_date_Tv"/>
+
+            <Button
+                android:id="@+id/addCourse_Btn"
+                android:layout_marginRight="71px"
+                android:layout_marginTop="71px"
+                android:background="@drawable/delete"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="71px"
+        android:layout_height="205px">
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/coursetime"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/addCourseStyle"
+            android:id="@+id/addCourse_time_Tv"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="71px"
+        android:layout_height="205px">
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/courseplace"/>
+
+        <EditText
+            android:id="@+id/addCourse_classroom_edit"
+            android:layout_width="match_parent"
+            style="@style/addCourseStyle"
+            android:hint="上课地点(可不填)"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="71px"
+        android:layout_height="205px">
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/courseteacher"/>
+
+
+        <EditText
+            android:id="@+id/addCourse_teacher_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="任课老师(可不填)"
+            style="@style/addCourseStyle" />
+    </LinearLayout>
+</LinearLayout>
