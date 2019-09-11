@@ -145,7 +145,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="45px"
-            android:text="确 认 添 加"
+            android:text="保  存"
             android:id="@+id/addTerm_btn"
             android:background="@drawable/buttonstyle"
             android:layout_gravity="center_horizontal"

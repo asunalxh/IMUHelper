@@ -2,6 +2,7 @@ package com.example.imuhelper.utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.timetable.R;
+import com.example.imuhelper.R;
 
 public class DIYDialog extends Dialog {
 
@@ -53,6 +54,7 @@ public class DIYDialog extends Dialog {
             Button rightButton = view.findViewById(R.id.diyDialog_right_btn);
             Button leftButton = view.findViewById(R.id.diyDialog_left_btn);
             rightButton.setText(rightButtonText);
+            rightButton.setTextColor(Color.RED);
             leftButton.setText(leftButtonText);
 
             rightButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +91,14 @@ public class DIYDialog extends Dialog {
 
         public void setContentWidth(int contentWidth) {
             this.contentWidth = contentWidth;
+        }
+
+        public void setRightButtonText(String rightButtonText){
+            this.rightButtonText = rightButtonText;
+        }
+
+        public void setLeftButtonText(String leftButtonText){
+            this.leftButtonText = leftButtonText;
         }
 
         public interface onButtonClickListener {

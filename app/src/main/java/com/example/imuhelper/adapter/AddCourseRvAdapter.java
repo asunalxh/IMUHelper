@@ -1,6 +1,7 @@
 package com.example.imuhelper.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,11 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.timetable.R;
-import com.example.timetable.bean.CourseBean;
-import com.example.timetable.utils.DIYDialog;
-import com.example.timetable.utils.DateSelector;
-import com.example.timetable.utils.TimeSelector;
+import com.example.imuhelper.R;
+import com.example.imuhelper.bean.CourseBean;
+import com.example.imuhelper.utils.DIYDialog;
+import com.example.imuhelper.utils.DateSelector;
+import com.example.imuhelper.utils.TimeSelector;
 
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final int TYPE_HEADER = 0;
     private final int TYPE_CONTENT = 1;
     private final int TYPE_BOTTOM = 2;
+
+    private Handler handler = new Handler();
 
     private List<CourseBean> list;
 
@@ -68,11 +71,11 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public ContentHolder(@NonNull View itemView) {
             super(itemView);
-            dateTv=itemView.findViewById(R.id.addCourse_date_Tv);
-            timeTv=itemView.findViewById(R.id.addCourse_time_Tv);
+            dateTv = itemView.findViewById(R.id.addCourse_date_Tv);
+            timeTv = itemView.findViewById(R.id.addCourse_time_Tv);
             classroomEdit = itemView.findViewById(R.id.addCourse_classroom_edit);
             teacherEdit = itemView.findViewById(R.id.addCourse_teacher_edit);
-            button=itemView.findViewById(R.id.addCourse_Btn);
+            button = itemView.findViewById(R.id.addCourse_Btn);
         }
     }
 
@@ -120,22 +123,36 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((HeaderHolder) holder).nameEdit.addTextChangedListener(HeaderTextWatcher);
         } else if (holder instanceof ContentHolder) {
             final CourseBean courseBean = list.get(position);
-            if(courseBean.getStart_week()>0)
-                 ((ContentHolder) holder).dateTv.setText("第"+weeks[courseBean.getStart_week()]+'-'+weeks[courseBean.getEnd_week()]+"周");
-            else
-                ((ContentHolder) holder).dateTv.setText("自动");
+
+
+            StringBuffer stringBuffer = new StringBuffer();
+            if (courseBean.getStart_week() > 0)
+                stringBuffer.append("第" + weeks[courseBean.getStart_week()] + '-' + weeks[courseBean.getEnd_week()] + "周 ");
+            switch (courseBean.getType()) {
+                case CourseBean.TYPE_DOUBLE:
+                    stringBuffer.append("双周");
+                    break;
+                case CourseBean.TYPE_SINGLE:
+                    stringBuffer.append("单周");
+                    break;
+            }
+            ((ContentHolder) holder).dateTv.setText(stringBuffer.toString());
+
+
             ((ContentHolder) holder).classroomEdit.setText(courseBean.getClassroom());
             ((ContentHolder) holder).teacherEdit.setText(courseBean.getTeacher());
-            ((ContentHolder) holder).timeTv.setText(dayOfWeeks[courseBean.getDay_of_week() - 1]+" 第"+
-                    courseBean.getStart_course()+'-'+courseBean.getEnd_course()+"节");
 
-            ((ContentHolder) holder).classroomEdit.addTextChangedListener(new TimeTextWatcher(position, 1));
-            ((ContentHolder) holder).teacherEdit.addTextChangedListener(new TimeTextWatcher(position, 2));
+
+            ((ContentHolder) holder).timeTv.setText(dayOfWeeks[courseBean.getDay_of_week() - 1] + " 第" +
+                    courseBean.getStart_course() + '-' + courseBean.getEnd_course() + "节");
+
+            ((ContentHolder) holder).classroomEdit.addTextChangedListener(new TimeTextWatcher(list.get(position), 1));
+            ((ContentHolder) holder).teacherEdit.addTextChangedListener(new TimeTextWatcher(list.get(position), 2));
 
             ((ContentHolder) holder).button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(onContentButtonClickListener!=null)
+                    if (onContentButtonClickListener != null)
                         onContentButtonClickListener.onClick(position);
                 }
             });
@@ -144,11 +161,14 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onClick(View view) {
                     final DateSelector dateSelector = new DateSelector(context);
-                    if(courseBean.getStart_week()>0&&courseBean.getEnd_week()>=0)
-                        dateSelector.setSelect(courseBean.getStart_week(),courseBean.getEnd_week());
+                    if (courseBean.getStart_week() > 0 && courseBean.getEnd_week() >= 0)
+                        dateSelector.setSelect(courseBean.getStart_week(), courseBean.getEnd_week(), courseBean.getType());
+                    else dateSelector.setSelect(1, 1, courseBean.getType());
                     DIYDialog.Builder builder = new DIYDialog.Builder(context, dateSelector.getView());
-                    builder.setContentHeight(750);
-                    builder.setContentWidth(600);
+                    builder.setContentHeight(600);
+                    builder.setContentWidth(720);
+                    builder.setLeftButtonText("取消");
+                    builder.setRightButtonText("确认");
                     builder.setRightButtonOnClickListener(new DIYDialog.Builder.onButtonClickListener() {
                         @Override
                         public void onClick() {
@@ -156,10 +176,20 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             int endWeek = dateSelector.getEndWeek();
                             list.get(position).setStart_week(startWeek);
                             list.get(position).setEnd_week(endWeek);
-                            if(courseBean.getStart_week()>0)
-                                ((ContentHolder) holder).dateTv.setText("第"+weeks[courseBean.getStart_week()]+'-'+weeks[courseBean.getEnd_week()]+"周");
-                            else
-                                ((ContentHolder) holder).dateTv.setText("自动");                        }
+                            list.get(position).setType(dateSelector.getType());
+                            StringBuffer stringBuffer = new StringBuffer();
+                            if (courseBean.getStart_week() > 0)
+                                stringBuffer.append("第" + weeks[courseBean.getStart_week()] + '-' + weeks[courseBean.getEnd_week()] + "周 ");
+                            switch (courseBean.getType()) {
+                                case CourseBean.TYPE_DOUBLE:
+                                    stringBuffer.append("双周");
+                                    break;
+                                case CourseBean.TYPE_SINGLE:
+                                    stringBuffer.append("单周");
+                                    break;
+                            }
+                            ((ContentHolder) holder).dateTv.setText(stringBuffer.toString());
+                        }
                     });
                     DIYDialog diyDialog = builder.create();
                     diyDialog.show();
@@ -169,10 +199,12 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onClick(View view) {
                     final TimeSelector timeSelector = new TimeSelector(context);
-                    timeSelector.setSelect(courseBean.getDay_of_week(),courseBean.getStart_course(),courseBean.getEnd_course());
+                    timeSelector.setSelect(courseBean.getDay_of_week(), courseBean.getStart_course(), courseBean.getEnd_course());
                     DIYDialog.Builder builder = new DIYDialog.Builder(context, timeSelector.getView());
-                    builder.setContentHeight(750);
-                    builder.setContentWidth(600);
+                    builder.setContentHeight(600);
+                    builder.setContentWidth(720);
+                    builder.setLeftButtonText("取消");
+                    builder.setRightButtonText("确认");
                     builder.setRightButtonOnClickListener(new DIYDialog.Builder.onButtonClickListener() {
                         @Override
                         public void onClick() {
@@ -182,8 +214,8 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                             list.get(position).setStart_course(startCourse);
                             list.get(position).setEnd_course(endCourse);
                             list.get(position).setDay_of_week(dayOfWeek);
-                            ((ContentHolder) holder).timeTv.setText(dayOfWeeks[courseBean.getDay_of_week() - 1]+" 第"+
-                                    courseBean.getStart_course()+'-'+courseBean.getEnd_course()+"节");
+                            ((ContentHolder) holder).timeTv.setText(dayOfWeeks[courseBean.getDay_of_week() - 1] + " 第" +
+                                    courseBean.getStart_course() + '-' + courseBean.getEnd_course() + "节");
                         }
                     });
                     DIYDialog diyDialog = builder.create();
@@ -210,11 +242,11 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private class TimeTextWatcher implements TextWatcher {
 
-        int position;
+        CourseBean courseBean;
         int which;
 
-        public TimeTextWatcher(int position, int which) {
-            this.position = position;
+        public TimeTextWatcher(CourseBean courseBean, int which) {
+            this.courseBean = courseBean;
             this.which = which;
         }
 
@@ -233,10 +265,10 @@ public class AddCourseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             if (editable.length() > 0) {
                 switch (which) {
                     case 1:
-                        list.get(position).setClassroom(editable.toString());
+                        courseBean.setClassroom(editable.toString());
                         break;
                     case 2:
-                        list.get(position).setTeacher(editable.toString());
+                        courseBean.setTeacher(editable.toString());
                         break;
                 }
             }

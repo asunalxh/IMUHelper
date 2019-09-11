@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.example.imuhelper.R;
 import com.example.imuhelper.activities.AddTermActivity;
 import com.example.imuhelper.utils.IntentTool;
+import com.example.imuhelper.utils.ProgressDialog;
+import com.example.imuhelper.utils.TipDialog;
 
 
 /**
@@ -33,6 +35,7 @@ public class NoneTermFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
         super.onActivityCreated(savedInstanceState);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B2F383</color>
+    <color name="colorPrimary">#6EBBFF</color>
     <color name="colorPrimaryDark">#6EBBFF</color>
-    <color name="colorAccent">#80DDBD</color>
+    <color name="colorAccent">#6EBBFF</color>
     <color name="white">#FFFFFF</color>
     <color name="numCard">#ACD8FD</color>
     <color name="numText">#6E6F73</color>

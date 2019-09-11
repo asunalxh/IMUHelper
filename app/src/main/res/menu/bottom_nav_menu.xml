@@ -7,12 +7,12 @@
         android:title="课程表"/>
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_search"
         android:icon="@drawable/icon_search"
         android:title="教室查询" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_mine"
         android:icon="@drawable/icon_mine"
         android:title="我的" />
 

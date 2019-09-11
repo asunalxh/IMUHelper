@@ -1,6 +1,7 @@
 package com.example.imuhelper.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -76,6 +77,7 @@ public class AddTermActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final CalendarHelper helper = new CalendarHelper();
                 CalendarView calendarView = new CalendarView(getBaseContext());
+                calendarView.setSelectedWeekBackgroundColor(Color.BLUE);
                 calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                     @Override
                     public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
@@ -83,6 +85,8 @@ public class AddTermActivity extends AppCompatActivity {
                     }
                 });
                 DIYDialog.Builder builder = new DIYDialog.Builder(AddTermActivity.this, calendarView);
+                builder.setLeftButtonText("取消");
+                builder.setRightButtonText("确认");
                 builder.setRightButtonOnClickListener(new DIYDialog.Builder.onButtonClickListener() {
                     @Override
                     public void onClick() {
@@ -124,6 +128,7 @@ public class AddTermActivity extends AppCompatActivity {
                     if (!dbHelper.isExisted(name, lastId)) {
 
                         dbHelper.insertTerm(termBean);
+                        TermTool.setSelectedTerm(getBaseContext(),name);
                         Intent result = new Intent();
                         result.putExtra("name", name);
                         setResult(IntentTool.RESULT_OK, result);

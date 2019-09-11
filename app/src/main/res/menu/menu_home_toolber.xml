@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/mainToolbar_addCourse_menu"
+    <item android:id="@+id/homeToolbar_addCourse_menu"
         app:showAsAction="always"
         android:icon="@drawable/add"
         android:title="添加课程"/>
-    <item android:id="@+id/mainToolbar_download_menu"
+    <item android:id="@+id/homeToolbar_download_menu"
         app:showAsAction="never"
         android:title="下载课程"/>
-    <item android:id="@+id/mainToolbar_termList_menu"
+    <item android:id="@+id/homeToolbar_termList_menu"
         app:showAsAction="never"
         android:title="学期列表"/>
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.asunalxh.wheelview.WheelView;
-import com.example.timetable.R;
+import com.example.imuhelper.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,17 @@ public class TimeSelector {
     private int maxCourseNumber=20;
     public TimeSelector(Context context){
         LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view=inflater.inflate(R.layout.item_timeselector,null);
+        view=inflater.inflate(R.layout.item_threeselector,null);
 
-        wheelView[0]=view.findViewById(R.id.timeSelector_dayOfWeek);
-        wheelView[1]=view.findViewById(R.id.timeSelector_startCourse);
-        wheelView[2]=view.findViewById(R.id.timeSelector_endCourse);
+        wheelView[0]=view.findViewById(R.id.threeSelector_First);
+        wheelView[1]=view.findViewById(R.id.threeSelector_Second);
+        wheelView[2]=view.findViewById(R.id.threeSelector_Third);
 
         for(int i=0;i<3;i++){
             wheelView[i].setSelectBackgroundColor(Color.BLUE);
             wheelView[i].setTextSize(60);
+            wheelView[i].setTextColor(0Xff333333);
+            wheelView[i].setSelectBackgroundColor(0xFF95f0e5);
         }
 
         wheelView[0].setList(leftList);

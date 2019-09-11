@@ -9,15 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="25px"
-        android:layout_margin="2px"
-        android:background="@color/gray"
+        android:layout_margin="3px"
+        android:background="#FFFFFF"
         android:alpha="0.75">
 
         <TextView
             android:id="@+id/courseCard_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"/>
+            android:paddingLeft="5px"
+            android:paddingRight="5px"
+            android:layout_marginTop="36px"/>
 
     </androidx.cardview.widget.CardView>
 

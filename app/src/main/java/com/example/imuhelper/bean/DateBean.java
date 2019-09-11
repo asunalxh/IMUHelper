@@ -1,6 +1,6 @@
 package com.example.imuhelper.bean;
 
-import com.example.timetable.utils.CalendarHelper;
+import com.example.imuhelper.utils.CalendarHelper;
 
 public class DateBean {
     private int year;

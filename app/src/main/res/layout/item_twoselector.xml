@@ -6,16 +6,16 @@
     android:layout_height="wrap_content">
 
     <com.asunalxh.wheelview.WheelView
-        android:id="@+id/dateSelector_startWeek"
+        android:id="@+id/twoSelector_First"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"></com.asunalxh.wheelview.WheelView>
+        android:layout_weight="1"/>
 
     <com.asunalxh.wheelview.WheelView
-        android:id="@+id/dateSelector_endWeek"
+        android:id="@+id/twoSelector_Second"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"></com.asunalxh.wheelview.WheelView>
+        android:layout_weight="1"/>
 
 
 </LinearLayout>

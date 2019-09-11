@@ -72,7 +72,7 @@ public class CourseDBHelper extends SQLiteOpenHelper {
 
 
         if (week % 2 == 0)
-            type = CourseBean.TYPPE_DOUBLE;
+            type = CourseBean.TYPE_DOUBLE;
         else type = CourseBean.TYPE_SINGLE;
 
 
@@ -142,7 +142,7 @@ public class CourseDBHelper extends SQLiteOpenHelper {
 
 
         if (week % 2 == 0)
-            type = CourseBean.TYPPE_DOUBLE;
+            type = CourseBean.TYPE_DOUBLE;
         else type = CourseBean.TYPE_SINGLE;
 
 
@@ -234,7 +234,7 @@ public class CourseDBHelper extends SQLiteOpenHelper {
 
         int type;
         if (week % 2 == 0)
-            type = CourseBean.TYPPE_DOUBLE;
+            type = CourseBean.TYPE_DOUBLE;
         else type = CourseBean.TYPE_SINGLE;
 
         cursor = db.query("course", null, "type=? and start_week<=? and end_week>=? and day_of_week=? and start_course<=? and end_course>=?",
@@ -276,7 +276,7 @@ public class CourseDBHelper extends SQLiteOpenHelper {
 
         int type;
         if (week % 2 == 0)
-            type = CourseBean.TYPPE_DOUBLE;
+            type = CourseBean.TYPE_DOUBLE;
         else type = CourseBean.TYPE_SINGLE;
 
         cursor = db.query("course", null, "name!=? and type=? and start_week<=? and end_week>=? and day_of_week=? and start_course<=? and end_course>=?",

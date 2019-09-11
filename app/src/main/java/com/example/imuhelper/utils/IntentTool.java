@@ -11,4 +11,6 @@ public class IntentTool {
     public final static int Main_To_TermList = 10090;
     public final static int TermList_To_AddTerm_NewTerm = 10091;
     public final static int TermList_To_AddTerm_EditTerm = 10092;
+    public final static int ScoreList_To_LogIn = 10093;
+    public final static int Search_To_LogIn = 10094;
 }

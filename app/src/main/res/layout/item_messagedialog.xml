@@ -28,7 +28,7 @@
             android:alpha="0.9"
             android:gravity="center"
             style="@style/messageDialogTextStyle"
-            android:background="@drawable/left_botton_shape"
+            android:background="@drawable/left_button_shape"
             android:layout_weight="1"/>
 
         <Button

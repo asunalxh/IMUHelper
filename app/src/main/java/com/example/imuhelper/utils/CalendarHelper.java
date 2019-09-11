@@ -1,5 +1,7 @@
 package com.example.imuhelper.utils;
 
+import com.example.imuhelper.bean.DateBean;
+
 import java.util.Calendar;
 
 public class CalendarHelper {
@@ -71,5 +73,9 @@ public class CalendarHelper {
                 default:
                     return 0;
         }
+    }
+
+    public DateBean getDate(){
+        return new DateBean(getYear(),getMonth(),getDay(),getDay_of_Week());
     }
 }

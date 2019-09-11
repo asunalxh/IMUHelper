@@ -24,6 +24,8 @@
 
     </style>
 
+
+
     <style name="numCardStyle">
         <item name="android:textColor">@color/numText</item>
         <item name="android:textSize">45px</item>
@@ -48,6 +50,13 @@
     <style name="messageDialogTextStyle">
         <item name="android:textColor">@color/numText</item>
         <item name="android:textSize">50px</item>
+    </style>
+
+
+    <style name="scoreListTitle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">50px</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

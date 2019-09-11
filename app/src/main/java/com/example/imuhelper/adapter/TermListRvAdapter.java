@@ -1,6 +1,7 @@
 package com.example.imuhelper.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +103,12 @@ public class TermListRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 if (onButtonClick != null)
                     onButtonClick.onClick(position);
 
+                TermDBHelper termDBHelper = new TermDBHelper(context, null);
+                termDBHelper.remove(list.get(position).getId());
+                list.remove(position);
+                notifyItemRemoved(position);
+                notifyDataSetChanged();
+
                 //如果删除的是当前显示的课程表
                 if (position == selectIndex) {
                     //如果还有其他的学期，设置显示第一个学期
@@ -109,17 +116,12 @@ public class TermListRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         selectIndex = 0;
                         notifyItemChanged(0);
                         TermTool.setSelectedTerm(context, list.get(0).getId());
-                    } /*没有学期，设置成没有学期*/else {
+                    } /*没有学期，设置成没有学期*/ else {
                         TermTool.setNoSelect(context);
+                        selectIndex = -1;
                     }
                 }
 
-                
-                TermDBHelper termDBHelper = new TermDBHelper(context, null);
-                termDBHelper.remove(list.get(position).getId());
-                list.remove(position);
-                notifyItemRemoved(position);
-                notifyDataSetChanged();
 
 
             }
@@ -127,10 +129,9 @@ public class TermListRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         ((TermHolder) holder).baseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setSelect(position);
                 if (onContentClick != null)
                     onContentClick.onClick(position);
-
-                setSelect(position);
             }
         });
         ((TermHolder) holder).baseLayout.setOnLongClickListener(new View.OnLongClickListener() {

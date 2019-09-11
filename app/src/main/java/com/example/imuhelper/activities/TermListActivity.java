@@ -12,11 +12,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.timetable.R;
-import com.example.timetable.adapter.TermListRvAdapter;
-import com.example.timetable.bean.TermBean;
-import com.example.timetable.db.TermDBHelper;
-import com.example.timetable.utils.IntentTool;
+import com.example.imuhelper.R;
+import com.example.imuhelper.adapter.TermListRvAdapter;
+import com.example.imuhelper.bean.TermBean;
+import com.example.imuhelper.db.TermDBHelper;
+import com.example.imuhelper.utils.IntentTool;
 
 import java.util.List;
 
@@ -54,6 +54,13 @@ public class TermListActivity extends AppCompatActivity {
             }
         });
 
+        adapter.setOnContentClick(new TermListRvAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                setResult(IntentTool.RESULT_OK);
+                finish();
+            }
+        });
 
         contentRv.setAdapter(adapter);
         contentRv.setLayoutManager(new LinearLayoutManager(this));

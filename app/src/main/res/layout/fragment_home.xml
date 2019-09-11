@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-
-    tools:context=".activities.TimeTableActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:background="@color/white"
-        android:id="@+id/main_toolbar"
+        android:id="@+id/home_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 

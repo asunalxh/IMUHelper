@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/mine_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/item_mine_header"
+        app:menu="@menu/menu_mine">
+
+        <Button
+            android:id="@+id/mine_logOut_Btn"
+            android:layout_width="match_parent"
+            android:text="退出"
+            android:layout_gravity="bottom"
+            android:layout_height="120px"/>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</LinearLayout>

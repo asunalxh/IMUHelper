@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.example.timetable.bean.TermBean;
-import com.example.timetable.db.CourseDBHelper;
-import com.example.timetable.db.TermDBHelper;
+import com.example.imuhelper.bean.DateBean;
+import com.example.imuhelper.bean.TermBean;
+import com.example.imuhelper.db.CourseDBHelper;
+import com.example.imuhelper.db.TermDBHelper;
 
 public class TermTool {
 
@@ -25,7 +27,7 @@ public class TermTool {
      * @return
      */
     public static String getDBName(Context context) {
-        return getSelectedTerm(context).getName() + ".db";
+        return getSelectedTerm(context).getId() + ".db";
     }
 
     /**
@@ -36,8 +38,9 @@ public class TermTool {
      */
     public static boolean init(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("selected_term", Context.MODE_PRIVATE);
-        selectedId = sharedPreferences.getInt("id", -1);
-        if (selectedId == -1)
+        selectedId = sharedPreferences.getInt("id", 0);
+        Log.d("test:Id",String.valueOf(selectedId));
+        if (selectedId == 0)
             return false;
         reFreshTerm(context);
         return true;
@@ -84,7 +87,7 @@ public class TermTool {
 
 
     public static void setNoSelect(Context context) {
-        selectedId = -1;
+        selectedId = 0;
         SharedPreferences.Editor editor = context.getSharedPreferences("selected_term", Context.MODE_PRIVATE).edit();
         editor.putInt("id", selectedId);
         editor.apply();
@@ -119,7 +122,7 @@ public class TermTool {
      * @return
      */
     public static int getTermLength() {
-        return termLength;
+        return termLength > 0 ? termLength : 1;
     }
 
     /**
@@ -128,7 +131,7 @@ public class TermTool {
      * @return
      */
     public static int getCourseNumber() {
-        return courseNumber;
+        return courseNumber > 8 ? courseNumber : 8;
     }
 
     /**
@@ -139,4 +142,5 @@ public class TermTool {
     public static int getSelectedId() {
         return selectedId;
     }
+
 }

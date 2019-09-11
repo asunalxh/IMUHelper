@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/search_background"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="自习室查询"
+            android:gravity="center"
+            android:textSize="56px"
+            android:textColor="#5357c9"/>
+
+        <Button
+            android:id="@+id/searchToolbar_commit_menu"
+            android:layout_width="65px"
+            android:layout_height="65px"
+            android:layout_marginRight="50px"
+            android:clickable="true"
+            android:background="@drawable/save"
+            android:layout_gravity="right"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120px">
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_centerInParent="true"
+            android:background="@drawable/score_course"
+            style="@style/scoreListTitle"
+            android:text="课程"
+            android:layout_marginTop="24px"
+            android:layout_marginBottom="24px"
+            android:layout_marginLeft="48px"
+            android:layout_height="match_parent"/>
+
+        <RadioGroup
+            android:id="@+id/search_time_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:checkedButton="@id/search_today_radio"
+            android:weightSum="3">
+
+            <RadioButton
+                android:id="@+id/search_today_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_red"
+                android:text="今天"
+                android:gravity="center"
+                android:button="@null"/>
+            <RadioButton
+                android:id="@+id/search_tomorrow_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_red"
+                android:text="明天"
+                android:gravity="center"
+                android:button="@null"/>
+            <RadioButton
+                android:id="@+id/search_dayAfter_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_red"
+                android:text="后天"
+                android:gravity="center"
+                android:button="@null"/>
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="48px"
+        android:layout_width="match_parent"
+        android:layout_height="120px">
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_centerInParent="true"
+            android:background="@drawable/score_point"
+            style="@style/scoreListTitle"
+            android:text="教学楼"
+            android:layout_marginTop="24px"
+            android:layout_marginBottom="24px"
+            android:layout_marginLeft="48px"
+            android:layout_height="match_parent"/>
+
+        <RadioGroup
+            android:id="@+id/search_place_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:checkedButton="@id/search_zhuLou_radio"
+            android:weightSum="3">
+
+            <RadioButton
+                android:id="@+id/search_zhuLou_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_blue"
+                android:text="主楼"
+                android:gravity="center"
+                android:button="@null"/>
+            <RadioButton
+                android:id="@+id/search_zongHeLou_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_blue"
+                android:text="综合楼"
+                android:gravity="center"
+                android:button="@null"/>
+            <RadioButton
+                android:id="@+id/search_yanJiuShengLou_radio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_blue"
+                android:text="研究生楼"
+                android:gravity="center"
+                android:button="@null"/>
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:orientation="horizontal"
+        android:layout_marginTop="48px">
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_centerInParent="true"
+            android:background="@drawable/score_score"
+            style="@style/scoreListTitle"
+            android:text="时间"
+            android:layout_marginTop="24px"
+            android:layout_marginBottom="24px"
+            android:layout_marginLeft="48px"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/search_time_Tv"
+            android:textSize="42px"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="48px"
+        android:layout_marginRight="48px"
+        android:layout_marginTop="96px">
+
+        <TextView
+            android:layout_width="300px"
+            android:layout_height="72px"
+            android:background="@drawable/textview_yellow"
+            style="@style/scoreListTitle"
+            android:text="查询结果" />
+        <TextView
+            android:id="@+id/search_result_Tv"
+            android:background="@drawable/search_result_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="48px"
+            android:layout_marginLeft="24px"
+            android:layout_marginRight="24px"
+            android:layout_marginBottom="48px"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

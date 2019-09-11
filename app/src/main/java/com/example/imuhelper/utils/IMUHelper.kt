@@ -2,8 +2,10 @@ package com.example.imuhelper.utils
 
 import android.content.Context
 import android.util.Log
+import com.alibaba.fastjson.JSONObject
+import com.example.imuhelper.bean.CourseBean
+import com.example.imuhelper.bean.ScoreBean
 import okhttp3.*
-import okhttp3.internal.addHeaderLenient
 import java.io.IOException
 
 private var JSESSIONID: String = ""
@@ -118,7 +120,8 @@ fun getCodeImage(onResponse: OnResponse? = null) {
 }
 
 fun SecurityCheck(account: String, password: String, code: String, onResponse: OnResponse? = null) {
-    var client = OkHttpClient.Builder().build()
+    var client = OkHttpClient.Builder()
+        .build()
     var formBody = FormBody.Builder()
         .add("j_username", account)
         .add("j_password", password)
@@ -596,7 +599,7 @@ fun logout() {
         .addHeader("Accept-Language", "zh,zh-TW;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6")
         .addHeader("Cookie", "JSESSIONID=${JSESSIONID}")
         .build()
-    var call = client.newCall(request)
+    val call = client.newCall(request)
     call.enqueue(object : Callback {
         override fun onResponse(call: Call, response: Response) {
             Log.d("test:", "response")
@@ -634,8 +637,7 @@ fun enterout() {
 }
 
 
-const val ZongHeLou = "01_002"
-const val YanJiuShengLou = "01_003"
+
 
 
 fun searchClassroom(onResopnse: OnResponse? = null, where: String, startCourse: Int, endCourse: Int,dayPlus:Int) {
@@ -830,6 +832,106 @@ fun searchClassroom_7(onResopnse: OnResponse? = null, where:String, startCourse:
             onResopnse?.onResponseFalse()
         }
     })
+}
+
+
+
+fun getCourseList(string: String): List<CourseBean> {
+    val list = ArrayList<CourseBean>()
+    val responseJson = JSONObject.parseObject(string)
+    val courseList = responseJson.getJSONArray("dateList").getJSONObject(0).getJSONArray("selectCourseList")
+    for (i in 0 until courseList.size) {
+
+        val courseInfo = courseList.getJSONObject(i)
+        val courseTeacher = courseInfo.getString("attendClassTeacher")
+        val courseName = courseInfo.getString("courseName")
+        val timeList = courseInfo.getJSONArray("timeAndPlaceList")
+        timeList?.run {
+            for (j in 0 until timeList.size) {
+                var timeInfo = timeList.getJSONObject(j)
+                var dayOfWeek = timeInfo.getInteger("classDay")
+                var startCourse = timeInfo.getInteger("classSessions")
+                var endCourse = startCourse + timeInfo.getInteger("continuingSession") - 1
+                var week = timeInfo.getString("weekDescription")
+                var place = timeInfo.getString("teachingBuildingName") + timeInfo.getString("classroomName")
+                when (week) {
+                    "单周" -> {
+                        var courseBean = CourseBean(
+                            courseName,
+                            courseTeacher,
+                            place,
+                            CourseBean.TYPE_SINGLE,
+                            startCourse,
+                            endCourse,
+                            dayOfWeek
+                        )
+                        courseBean.start_week = 0
+                        courseBean.end_week = 0
+                        list.add(courseBean)
+                    }
+                    "双周" -> {
+                        var courseBean = CourseBean(
+                            courseName,
+                            courseTeacher,
+                            place,
+                            CourseBean.TYPE_DOUBLE,
+                            startCourse,
+                            endCourse,
+                            dayOfWeek
+                        )
+                        courseBean.start_week = 0
+                        courseBean.end_week = 0
+                        list.add(courseBean)
+                    }
+                    else -> {
+                        var startWeek: Int = 0
+                        var endWeek: Int = 0
+                        var weeks=week.split("-","周")
+                        startWeek=weeks[0].toInt()
+                        endWeek=weeks[1].toInt()
+                        Log.d("test:","$startWeek  $endWeek")
+                        var courseBean = CourseBean(
+                            courseName,
+                            courseTeacher,
+                            place,
+                            CourseBean.TYPE_ALL,
+                            startCourse,
+                            endCourse,
+                            dayOfWeek
+                        )
+                        courseBean.start_week = startWeek
+                        courseBean.end_week = endWeek
+                        list.add(courseBean)
+                    }
+                }
+            }
+        }
+    }
+    return list
+}
+
+
+
+fun getScoreList(string: String): List<ScoreBean> {
+    var list=ArrayList<ScoreBean>()
+    var responseObject= JSONObject.parseObject(string)
+    var lnList=responseObject.getJSONArray("lnList")
+//    var courseObject=lnList.getJSONObject(lnList.size-1)
+    for(j in 0 until lnList.size)
+    {
+        var courseObject=lnList.getJSONObject(j)
+        var scoreList=courseObject.getJSONArray("cjList")
+        for (i in 0 until scoreList.size) {
+            var score=scoreList.getJSONObject(i)
+            var courseName=score.getString("courseName")
+            var courseScore=score.getString("courseScore")
+            var credit=score.getInteger("credit")
+            var pointScore=score.getDouble("gradePointScore")?:0.0
+            list.add(ScoreBean(courseName,courseScore,credit,pointScore))
+        }
+    }
+
+    return list
 }
 
 

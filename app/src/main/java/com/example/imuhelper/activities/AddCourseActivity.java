@@ -2,6 +2,7 @@ package com.example.imuhelper.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,18 +15,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.timetable.R;
-import com.example.timetable.adapter.AddCourseRvAdapter;
-import com.example.timetable.bean.CourseBean;
-import com.example.timetable.db.CourseDBHelper;
-import com.example.timetable.utils.CourseTool;
-import com.example.timetable.utils.IntentTool;
-import com.example.timetable.utils.TermTool;
+import com.example.imuhelper.R;
+import com.example.imuhelper.adapter.AddCourseRvAdapter;
+import com.example.imuhelper.bean.CourseBean;
+import com.example.imuhelper.db.CourseDBHelper;
+import com.example.imuhelper.utils.CourseTool;
+import com.example.imuhelper.utils.IntentTool;
+import com.example.imuhelper.utils.TermTool;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddCourseActvity extends AppCompatActivity {
+public class AddCourseActivity extends AppCompatActivity {
 
     private RecyclerView addcourseRv;
     private AddCourseRvAdapter adapter;
@@ -38,10 +39,9 @@ public class AddCourseActvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcousre);
-        /*testcode*/
         Toolbar toolbar = findViewById(R.id.addCourse_toolbar);
         setSupportActionBar(toolbar);
-        /**/
+
         init();
     }
 
@@ -52,12 +52,12 @@ public class AddCourseActvity extends AppCompatActivity {
             list.add(new CourseBean());
 
         Intent intent = getIntent();
-        int RequestCode = intent.getIntExtra("requestcode", 0);
+        int RequestCode = intent.getIntExtra("requestCode", 0);
 
 
         //如果是新建课程
         if (RequestCode == IntentTool.TimePager_To_AddCourse) {
-            list.add(1, new CourseBean());
+            list.add(1, new CourseBean(CourseBean.TYPE_ALL,1,1,1,1,1));
             isEdit = false;
         } /*编辑课程*/ else {
             isEdit = true;
@@ -67,12 +67,14 @@ public class AddCourseActvity extends AppCompatActivity {
             CourseDBHelper courseDBHelper = new CourseDBHelper(this, TermTool.getDBName(this), null);
 
             lastList = courseDBHelper.getCourse(lastName);
-
             for (CourseBean courseBean : lastList) {
                 list.add(list.size() - 1, courseBean);
+                Log.d("test:",courseBean.getName()+' '+String.valueOf(courseBean.getStart_course())+' '+ String.valueOf(courseBean.getEnd_course())+' '+courseBean.getStart_week()+' '+courseBean.getEnd_week());
             }
+
             list.get(0).setName(list.get(1).getName());
             courseDBHelper.close();
+
         }
 
 
@@ -81,23 +83,29 @@ public class AddCourseActvity extends AppCompatActivity {
         adapter.setOnBottomButtonClickListener(new AddCourseRvAdapter.OnBottomButtonClickListener() {
             @Override
             public void onClick() {
-                list.add(adapter.getItemCount() - 1, new CourseBean());
-                adapter.notifyItemChanged(adapter.getItemCount() - 2);
+
+                list.add(list.size() - 1, new CourseBean(CourseBean.TYPE_ALL,1,1,1,1,1));
+                adapter.notifyItemInserted(list.size() - 2);
+                adapter.notifyItemRangeChanged(list.size() - 2, 2);
+                addcourseRv.scrollToPosition(list.size() - 1);
+                Log.d("test:"," size:"+String.valueOf(list.size()));
             }
         });
         //设置删除按钮点击事件
         adapter.setOnContentButtonClickListener(new AddCourseRvAdapter.OnContentButtonClickListener() {
             @Override
             public void onClick(final int position) {
+                Log.d("test:","position:" +String.valueOf(position)+" size:"+String.valueOf(list.size()));
                 if (list.size() <= 3)
                     Toast.makeText(getBaseContext(), "不能再少了！！！", Toast.LENGTH_SHORT).show();
                 else {
                     list.remove(position);
                     adapter.notifyItemRemoved(position);
-                    adapter.notifyDataSetChanged();
+                    adapter.notifyItemRangeChanged(position,list.size() - position);
                 }
             }
         });
+
         addcourseRv.setAdapter(adapter);
         addcourseRv.setLayoutManager(new LinearLayoutManager(this));
         ((Button)findViewById(R.id.addCourseToolbar_commit_menu)).setOnClickListener(new View.OnClickListener() {
@@ -140,7 +148,7 @@ public class AddCourseActvity extends AppCompatActivity {
                                         if (week % 2 == 1 && courseDBHelper.isExisted(week, courseBean.getDay_of_week(), course, lastName))
                                             flag = false;
                                         break;
-                                    case CourseBean.TYPPE_DOUBLE:
+                                    case CourseBean.TYPE_DOUBLE:
                                         if (week % 2 == 0 && courseDBHelper.isExisted(week, courseBean.getDay_of_week(), course, lastName))
                                             flag = false;
                                         break;
@@ -213,7 +221,7 @@ public class AddCourseActvity extends AppCompatActivity {
                                         if (week % 2 == 1 && courseDBHelper.isExisted(week, courseBean.getDay_of_week(), course))
                                             flag = false;
                                         break;
-                                    case CourseBean.TYPPE_DOUBLE:
+                                    case CourseBean.TYPE_DOUBLE:
                                         if (week % 2 == 0 && courseDBHelper.isExisted(week, courseBean.getDay_of_week(), course))
                                             flag = false;
                                         break;

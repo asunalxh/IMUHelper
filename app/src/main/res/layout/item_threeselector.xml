@@ -7,19 +7,19 @@
 
 
     <com.asunalxh.wheelview.WheelView
-        android:id="@+id/timeSelector_dayOfWeek"
+        android:id="@+id/threeSelector_First"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"></com.asunalxh.wheelview.WheelView>
+        android:layout_weight="1"/>
 
     <com.asunalxh.wheelview.WheelView
-        android:id="@+id/timeSelector_startCourse"
+        android:id="@+id/threeSelector_Second"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"></com.asunalxh.wheelview.WheelView>
+        android:layout_weight="1"/>
 
     <com.asunalxh.wheelview.WheelView
-        android:id="@+id/timeSelector_endCourse"
+        android:id="@+id/threeSelector_Third"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

@@ -4,7 +4,7 @@ public class CourseBean {
 
     public static final int TYPE_ALL = 0;
     public static final int TYPE_SINGLE = 1;
-    public static final int TYPPE_DOUBLE = 2;
+    public static final int TYPE_DOUBLE = 2;
 
     private int id = -1;
     private String name = "";

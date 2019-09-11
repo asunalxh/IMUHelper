@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.timetable.R;
+import com.example.imuhelper.R;
 
 public class MessageDialog extends Dialog {
 

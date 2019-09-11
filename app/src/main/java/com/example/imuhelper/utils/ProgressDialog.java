@@ -9,35 +9,42 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.timetable.R;
+import com.example.imuhelper.R;
+
 
 public class ProgressDialog extends Dialog {
 
-    public static class Builder{
+    public static class Builder {
         private Context context;
         private String contentText;
 
-        public Builder(Context context){
-            this.context=context;
+        public Builder(Context context) {
+            this.context = context;
         }
 
-        public void setText(String text){
-            this.contentText=text;
+        public Builder(Context context, String contentText) {
+            this.contentText = contentText;
+            this.context = context;
         }
 
-        public ProgressDialog create(){
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        public void setText(String text) {
+            this.contentText = text;
+        }
 
-            View view=inflater.inflate(R.layout.item_progress_dialog,null);
+        public ProgressDialog create() {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            TextView textView=view.findViewById(R.id.progressDialog_content_Tv);
+            View view = inflater.inflate(R.layout.item_progress_dialog, null);
+
+            TextView textView = view.findViewById(R.id.progressDialog_content_Tv);
             textView.setText(contentText);
 
-            ProgressBar progressBar=view.findViewById(R.id.progressDialog_progressBar);
+            ProgressBar progressBar = view.findViewById(R.id.progressDialog_progressBar);
 
-            ProgressDialog dialog=new ProgressDialog(context);
+            ProgressDialog dialog = new ProgressDialog(context, R.style.BaseDialog);
 
-            dialog.addContentView(view,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.addContentView(view, layoutParams);
             return dialog;
         }
     }

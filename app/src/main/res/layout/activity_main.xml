@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,15 +8,19 @@
     tools:context=".activities.MainActivity">
 
     
-    <fragment
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/main_context_Frag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_bottom_Nv"/>
     
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="100px"
+        android:layout_height="150px"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu"
+        android:layout_alignParentBottom="true"
         android:id="@+id/main_bottom_Nv"/>
 
-</LinearLayout>
+</RelativeLayout>
