@@ -116,10 +116,11 @@ class MainActivity : AppCompatActivity() {
                                     )
                                     courseDBHelper.clear()
                                     courseDBHelper.insert(courseList)
+                                    handler.post{
+                                        progressDialog.hide()
+                                    }
                                     homeFrag.reFresh()
-//                                    handler.post{
-//                                        progressDialog.hide()
-//                                    }
+
                                 }
 
                                 override fun onResponseFalse() {
@@ -131,11 +132,23 @@ class MainActivity : AppCompatActivity() {
                         override fun onResponseFalse() {
                         }
                     })
+                    handler.post{
+                        progressDialog.hide()
+                    }
                 }).start()
             }
 
-            IntentTool.Search_To_LogIn -> if (requestCode == IntentTool.RESULT_OK) {
-                searchFrag.getClassroom()
+            IntentTool.Search_To_LogIn -> if (resultCode == IntentTool.RESULT_OK) {
+                Thread(Runnable {
+                    val progressDialog = ProgressDialog.Builder(this,"正在加载").create()
+                    handler.post {
+                        progressDialog.show()
+                    }
+                    searchFrag.getClassroom()
+                    handler.post{
+                        progressDialog.hide()
+                    }
+                }).start()
             }
 
             //添加课程

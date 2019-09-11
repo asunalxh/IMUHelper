@@ -2,11 +2,13 @@ package com.example.imuhelper.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.imuhelper.R
 import com.example.imuhelper.activities.ScoreList
@@ -17,7 +19,6 @@ class MineFragment : Fragment() {
 
     private lateinit var navigationView: NavigationView
     private lateinit var logOutBtn: Button
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +43,7 @@ class MineFragment : Fragment() {
             Thread(Runnable {
                 logout()
             }).start()
+            Toast.makeText(context,"退出成功",Toast.LENGTH_SHORT).show()
         }
 
         return view

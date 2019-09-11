@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -71,8 +72,8 @@ class HomeFragment : Fragment() {
             override fun onPageChange(position: Int) {
                 handler.post {
                     if (position == todayPosition)
-                        toolbar.title = "${list[position]}(本周)"
-                    else toolbar.title = list[position]
+                        toolbar.title = "课程表 - ${list[position]}(本周)"
+                    else toolbar.title = "课程表 - ${list[position]}"
                 }
             }
         }
@@ -184,7 +185,9 @@ class HomeFragment : Fragment() {
                                 }
 
                                 override fun onResponseFalse() {
-                                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                    handler.post {
+                                        Toast.makeText(context,"连接错误",Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             })
                         }).start()

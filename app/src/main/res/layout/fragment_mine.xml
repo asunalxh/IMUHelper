@@ -14,10 +14,13 @@
 
         <Button
             android:id="@+id/mine_logOut_Btn"
-            android:layout_width="match_parent"
+            android:layout_width="720px"
             android:text="退出"
-            android:layout_gravity="bottom"
-            android:layout_height="120px"/>
+            android:textColor="@color/red"
+            android:background="@drawable/buttonstyle"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_height="80px"
+            android:layout_marginBottom="24px"/>
 
     </com.google.android.material.navigation.NavigationView>
 

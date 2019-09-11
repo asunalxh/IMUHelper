@@ -7,6 +7,7 @@ import com.example.imuhelper.bean.CourseBean
 import com.example.imuhelper.bean.ScoreBean
 import okhttp3.*
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 private var JSESSIONID: String = ""
 
@@ -182,7 +183,9 @@ fun Index(onResponse: OnResponse? = null) {
 }
 
 fun simulation(onResopnse: OnResponse? = null) {
-    var client = OkHttpClient.Builder().build()
+    var client = OkHttpClient.Builder()
+        .connectTimeout(30,TimeUnit.SECONDS)
+        .build()
     var formBody = FormBody.Builder().build()
     var request = Request.Builder()
         .url("http://jwxt.imu.edu.cn/main/checkSelectCourseStatus")
@@ -197,7 +200,7 @@ fun simulation(onResopnse: OnResponse? = null) {
     var call = client.newCall(request)
     call.enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
-
+            onResopnse?.onResponseFalse()
         }
 
         override fun onResponse(call: Call, response: Response) {

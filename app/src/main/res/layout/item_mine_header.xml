@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/mine_header_background"
-    android:layout_height="600px">
+    android:layout_height="666px">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="185px"
+        android:layout_height="185px"
+        android:background="@drawable/header"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="166px"/>
 
 
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imuhelper.R
@@ -46,7 +47,9 @@ class ScoreList : AppCompatActivity() {
                 }
 
                 override fun onResponseFalse() {
-
+                    handler.post {
+                        Toast.makeText(baseContext,"连接错误", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
         }).start()
@@ -56,12 +59,13 @@ class ScoreList : AppCompatActivity() {
 
     private fun getScoreFun() {
         val progressDialog = ProgressDialog.Builder(this, "正在加载").create()
-        handler.post{
-            progressDialog.show()
-        }
+
 
         simulation(object : OnResponse {
             override fun onResponseOK(response: Response) {
+                handler.post{
+                    progressDialog.show()
+                }
                 getScore(object : OnResponse {
                     override fun onResponseOK(response: Response) {
                         var list = getScoreList(response.body!!.string())
@@ -81,6 +85,9 @@ class ScoreList : AppCompatActivity() {
             }
 
             override fun onResponseFalse() {
+                handler.post {
+                    Toast.makeText(baseContext,"连接错误", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
