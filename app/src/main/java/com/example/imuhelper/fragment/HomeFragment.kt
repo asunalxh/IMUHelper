@@ -211,19 +211,16 @@ class HomeFragment : Fragment() {
     fun reFresh() {
 
 
-        todayPosition = -1
-        val today = CalendarHelper().date
-        val term = TermDBHelper(context, null).getTerm(TermTool.getSelectedId())
-        if (today.compareTo(term) >= 0 && today.getWeekNum(term) < TermTool.getTermLength()) {
-            todayPosition = today.getWeekNum(term)
-        }
+
         //如果有学期信息
         if (TermTool.init(context)) {
+
             isTimetable = true
             (activity as AppCompatActivity).invalidateOptionsMenu()
             childFragmentManager.beginTransaction().hide(noneTermFragment)
                 .show(tablePagerFragment)
                 .commit()
+            todayPosition = -1
             val today = CalendarHelper().date
             val term = TermDBHelper(context, null).getTerm(TermTool.getSelectedId())
             if (today.compareTo(term) >= 0 && today.getWeekNum(term) < TermTool.getTermLength())

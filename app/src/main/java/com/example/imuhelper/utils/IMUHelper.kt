@@ -605,7 +605,6 @@ fun logout() {
     val call = client.newCall(request)
     call.enqueue(object : Callback {
         override fun onResponse(call: Call, response: Response) {
-            Log.d("test:", "response")
         }
 
         override fun onFailure(call: Call, e: IOException) {
@@ -892,7 +891,6 @@ fun getCourseList(string: String): List<CourseBean> {
                         var weeks=week.split("-","周")
                         startWeek=weeks[0].toInt()
                         endWeek=weeks[1].toInt()
-                        Log.d("test:","$startWeek  $endWeek")
                         var courseBean = CourseBean(
                             courseName,
                             courseTeacher,

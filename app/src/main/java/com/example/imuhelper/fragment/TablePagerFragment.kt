@@ -58,8 +58,6 @@ class TablePagerFragment : Fragment() {
 
     private fun init(view: View) {
         viewPager = view.findViewById(R.id.timePager_viewPager)
-        timeTableList.add(TimeTableFragment(1))
-        timeTableList.add(TimeTableFragment(2))
         adapter = TablePagerAdapter(fragmentManager!!, timeTableList)
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{

@@ -69,7 +69,6 @@ public class AddCourseActivity extends AppCompatActivity {
             lastList = courseDBHelper.getCourse(lastName);
             for (CourseBean courseBean : lastList) {
                 list.add(list.size() - 1, courseBean);
-                Log.d("test:",courseBean.getName()+' '+String.valueOf(courseBean.getStart_course())+' '+ String.valueOf(courseBean.getEnd_course())+' '+courseBean.getStart_week()+' '+courseBean.getEnd_week());
             }
 
             list.get(0).setName(list.get(1).getName());
@@ -88,14 +87,14 @@ public class AddCourseActivity extends AppCompatActivity {
                 adapter.notifyItemInserted(list.size() - 2);
                 adapter.notifyItemRangeChanged(list.size() - 2, 2);
                 addcourseRv.scrollToPosition(list.size() - 1);
-                Log.d("test:"," size:"+String.valueOf(list.size()));
+
             }
         });
         //设置删除按钮点击事件
         adapter.setOnContentButtonClickListener(new AddCourseRvAdapter.OnContentButtonClickListener() {
             @Override
             public void onClick(final int position) {
-                Log.d("test:","position:" +String.valueOf(position)+" size:"+String.valueOf(list.size()));
+
                 if (list.size() <= 3)
                     Toast.makeText(getBaseContext(), "不能再少了！！！", Toast.LENGTH_SHORT).show();
                 else {
